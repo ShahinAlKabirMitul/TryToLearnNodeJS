@@ -5,7 +5,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/courses', (req, res) => {
-    res.send([50,1,2,3]);
+    res.send([50,1,2,3
+    ]);
   });
 
 app.listen(3000, () => console.log('Listening port 3000 ...'));
