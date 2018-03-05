@@ -1,7 +1,15 @@
 const express = require('express');
 const Joi = require('joi');
+const logger = require('./logger');
 const app = express();
 app.use(express.json());
+app.use(logger);
+
+app.use(function(req, res, next) {
+  console.log('Authentication..........');
+  next();
+});
+
 var courses = [
   { id: 1, name: 'Course1' },
   { id: 2, name: 'Course2' },
