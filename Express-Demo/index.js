@@ -1,3 +1,5 @@
+const morgan = require('morgan');
+const helmet = require('helmet');
 const express = require('express');
 const Joi = require('joi');
 const logger = require('./logger');
@@ -6,6 +8,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(logger);
+app.use(helmet());
+app.use(morgan('tiny'));
 
 app.use(function(req, res, next) {
   console.log('Authentication..........');
