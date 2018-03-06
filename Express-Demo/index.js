@@ -1,3 +1,4 @@
+const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const express = require('express');
@@ -10,6 +11,11 @@ app.use(express.static('public'));
 app.use(logger);
 app.use(helmet());
 app.use(morgan('tiny'));
+
+console.log('Application Name: ' + config.get('name'));
+
+console.log('Mail Server Name: ' + config.get('mail.host'));
+console.log('Mail Password: ' + config.get('mail.password'));
 
 app.use(function(req, res, next) {
   console.log('Authentication..........');
