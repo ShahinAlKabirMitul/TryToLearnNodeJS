@@ -5,22 +5,13 @@ const express = require('express');
 const Joi = require('joi');
 const logger = require('./logger');
 const app = express();
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(logger);
-app.use(helmet());
-app.use(morgan('tiny'));
-
-console.log('Application Name: ' + config.get('name'));
-
-console.log('Mail Server Name: ' + config.get('mail.host'));
-console.log('Mail Password: ' + config.get('mail.password'));
-
-app.use(function(req, res, next) {
-  console.log('Authentication..........');
-  next();
-});
 
 var courses = [
   { id: 1, name: 'Course1' },
@@ -29,7 +20,7 @@ var courses = [
   { id: 4, name: 'Course4' },
 ];
 app.get('/', (req, res) => {
-  res.send('Hello World Mitul');
+  res.render('index', { title: 'My Express App', message: 'Helllo Kobir !!!' });
 });
 
 app.get('/api/courses', (req, res) => {
