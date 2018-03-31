@@ -1,7 +1,8 @@
+//Asynchronous
 console.log('Before');
-const user = getUser(1, user => {
+getUser(1, user => {
   getRepositories(user.gitHubUsername, repos => {
-    console.log('Repos:', repos);
+    getCommits(repo, commits => {});
   });
 });
 console.log('After');
@@ -17,3 +18,10 @@ function getRepositories(username, callback) {
     callback(['repo1', 'repo2', 'repo3']);
   }, 2000);
 }
+
+// Synchronous
+console.log('Before');
+const user = getUser();
+const repos = getRepositories(user.username);
+const commits = getCommits(repos[0]);
+console.log('After');
