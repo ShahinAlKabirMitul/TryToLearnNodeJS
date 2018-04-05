@@ -7,11 +7,26 @@ console.log('Before');
 //   });
 // });
 
-getUser(1)
-  .then(user => getRepositories(user.gitHubUsername))
-  .then(repos => getCommits(repos[0]))
-  .then(commits => console.log('Commits', commits))
-  .catch(err => console.log('Error', err.message));
+async function displayCommits() {
+  try {
+    const user = await getUser(1);
+    const repo = await getRepositories(user.gitHubUsername);
+    const commit = await getCommits(repo[0]);
+    console.log(commit);
+  } catch (err) {
+    console.log('Erroe', err);
+  }
+}
+
+// getUser(1)
+//   .then(user => getRepositories(user.gitHubUsername))
+//   .then(repos => getCommits(repos[0]))
+//   .then(commits => console.log('Commits', commits))
+//   .catch(err => console.log('Error', err.message));
+
+// async and wait
+
+displayCommits();
 
 console.log('After');
 
@@ -37,7 +52,7 @@ function getCommits(repo) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       console.log('Calling GitHub API...');
-      resolve(['commit']);
+      resolve(['commit repo 1']);
     }, 2000);
   });
 }
