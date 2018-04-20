@@ -39,10 +39,12 @@ async function createCourse() {
 async function getCourses() {
   //and or
   const courses = await Course.find()
-    // .find({ author: 'Mosh', isPublished: true })
-    //.find({ price: { $gte: { $in: [10, 15, 20] } } })
-    .find()
-    .or([{ author: 'mosh' }, { isPublished: true }])
+    // Starts with
+    .find({ author: /^mosh/ })
+    // Ends with hamedani
+    .find({ author: /.Hamidani$/i })
+    // Contains Mosh
+    .find({ author: /.*mosh.*/ })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
