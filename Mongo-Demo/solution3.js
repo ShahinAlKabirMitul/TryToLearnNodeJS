@@ -18,7 +18,7 @@ async function getCourses() {
     .find({ isPublished: true })
     .or([
       {
-        price: { $gte: 15 },
+        price: { $gte: 20 },
       },
       {
         name: /.*by.*/i,
