@@ -37,15 +37,14 @@ async function createCourse() {
 // in
 //nin(not in)
 async function getCourses() {
+  const pageNumber = 2;
+  const pageSize = 10;
   //and or
   const courses = await Course.find()
     // Starts with
-    .find({ author: /^mosh/ })
-    // Ends with hamedani
-    .find({ author: /.Hamidani$/i })
-    // Contains Mosh
-    .find({ author: /.*mosh.*/ })
-    .limit(10)
+    .find({ author: 'mosh' })
+    .skip(pageNumber - 1 * pageSize)
+    .limit(pageSize)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
   console.log(courses);
