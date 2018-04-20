@@ -11,24 +11,35 @@ const courseSchema = new mongoose.Schema({
   tags: [String],
   date: { type: Date, default: Date.now },
   isPublished: Boolean,
+  price: Number,
 });
 
 const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse() {
   const course = new Course({
-    name: 'Angular Course',
+    name: 'Node JS',
     author: 'Mosh',
-    tags: ['angular', 'fontend'],
+    tags: ['node', 'backend'],
     isPublished: true,
+    price: 25,
   });
   const result = await course.save();
   console.log(result);
 }
 //createCourse();
+// eq(equal)
+//ne(not equal)
+//gt(greater then)
+//gte(greater then or equel)
+//lt(less then)
+//lte(less then or equal)
+// in
+//nin(not in)
 async function getCourses() {
   const courses = await Course.find()
-    .find({ author: 'Mosh', isPublished: true })
+    //.find({ author: 'Mosh', isPublished: true })
+    .find({ price: { $gte: { $in: [10, 15, 20] } } })
     .limit(10)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
