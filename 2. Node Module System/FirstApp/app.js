@@ -1,8 +1,2 @@
-console.log(); // Global Object
-
-setInterval();
-clearTimeout();
-
-setInterval();
-
-clearInterval();
+const log = require('./logger');
+log('Hi mitul');
