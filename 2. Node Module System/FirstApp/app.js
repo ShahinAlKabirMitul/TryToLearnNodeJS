@@ -1,2 +1,3 @@
-const log = require('./logger');
-log('Hi mitul');
+const path = require('path');
+const pathObj = path.parse(__filename);
+console.log(pathObj);
