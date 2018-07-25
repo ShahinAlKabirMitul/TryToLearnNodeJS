@@ -27,7 +27,10 @@ async function createCourse() {
 async function getCourses() {
   //const result = await Course.find();
   //const result = await Course.find({ author: 'Mosh' });
-  const result = await Course.find({ author: 'Mosh' })
+  const result = await Course
+    //.find({ author: 'Mosh' })
+    .find()
+    .or([{ author: 'Mosh' }, { isPublished: true }])
     .limit(5)
     .sort({ name: 1 })
     .select({ name: 1, tags: 1 });
