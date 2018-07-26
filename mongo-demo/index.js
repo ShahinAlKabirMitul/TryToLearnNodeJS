@@ -33,7 +33,8 @@ async function getCourses() {
     .or([{ author: 'Mosh' }, { isPublished: true }])
     .limit(5)
     .sort({ name: 1 })
-    .select({ name: 1, tags: 1 });
+    .select({ name: 1, tags: 1 })
+    .count();
 
   console.log(result);
 }
