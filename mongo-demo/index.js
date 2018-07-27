@@ -43,12 +43,26 @@ async function getCourses() {
 }
 
 async function updateCourse(id) {
-  const course = await Course.findById(id);
-  if (!course) return;
-  course.isPublished = true;
-  course.author = 'mr kkr';
-  const result = await course.save();
-  console.log(result);
+  // const result = await Course.update(
+  //   { _id: id },
+  //   {
+  //     $set: {
+  //       author: 'Mitul',
+  //       isPublished: false,
+  //     },
+  //   }
+  // );
+  const course = await Course.findByIdAndUpdate(
+    id,
+    {
+      $set: {
+        author: 'Shahin AL Kabir mitul',
+        isPublished: false,
+      },
+    },
+    { new: true }
+  );
+  console.log(course);
 }
 
 updateCourse('5b57cdde65c2e12db4db6cfc');
